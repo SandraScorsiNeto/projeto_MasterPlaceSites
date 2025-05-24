@@ -1,6 +1,28 @@
+'use client';
+
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
+import { useState } from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  
+  async function handleLogin() {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password: senha,
+    });
+
+    if (error) {
+      setMensagem("Erro: " + error.message);
+    } else {
+      setMensagem("Login realizado com sucesso!");
+    }
+  }
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -48,7 +70,33 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-      </main>
+
+         {/* FORMULÁRIO DE LOGIN */}
+         <div className="flex flex-col gap-2">
+          <input
+            type="email"
+            placeholder="Email"
+            className="p-2 border rounded bg-white text-black"  //ajustando fundo branco e texto preto no campo email
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            className="p-2 border rounded bg-white text-black"  //ajustando fundo branco e texto preto no campo senha
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <button
+            onClick={handleLogin}
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2"
+          >
+            Entrar
+          </button>
+          {mensagem && <p>{mensagem}</p>}
+         </div>
+        </main>
+
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
