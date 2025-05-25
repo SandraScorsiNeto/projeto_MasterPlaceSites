@@ -9,7 +9,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-  
+
   async function handleLogin() {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
