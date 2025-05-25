@@ -23,11 +23,14 @@ export default function Home() {
       } else {
         setMensagem("Login realizado com sucesso!");
       }
-    } catch (err: any) {
-      //const error = err as Error;
-      console.error("Erro ao carregar dados:", err.message || err);
+    } catch (err) {
+       if (err instanceof Error) {
+        console.error('Erro ao carregar dados:', err.message);
+       } else {
+        console.error('Erro desconhecido:', err);
+       }
+      }
     }
-  }
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
