@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
 import { useState } from "react";
-import { SupabaseClient } from "@supabase/supabase-js";
+
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -11,15 +11,21 @@ export default function Home() {
   const [mensagem, setMensagem] = useState("");
 
   async function handleLogin() {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password: senha,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password: senha,
+      });
+      console.log(data); // para fins de debug
 
-    if (error) {
-      setMensagem("Erro: " + error.message);
-    } else {
-      setMensagem("Login realizado com sucesso!");
+      if (error) {
+        setMensagem("Erro: " + error.message);
+      } else {
+        setMensagem("Login realizado com sucesso!");
+      }
+    } catch (err: any) {
+      //const error = err as Error;
+      console.error("Erro ao carregar dados:", err.message || err);
     }
   }
 
