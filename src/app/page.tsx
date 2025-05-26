@@ -33,16 +33,16 @@ export default function Home() {
           Seu portal para criar e gerenciar sites de forma simples e eficiente.
         </p>
         {/* Imagem ilustrativa */}
-        {/*
+        {/* 
         <Image
           src="/vercel.svg"
           alt="Ilustração"
           width={120}
           height={120}
           className="mx-auto mb-8 dark:invert"
-        />
-        */}
-        
+        /> */}
+        <Image src="https://via.placeholder.com/120" alt="Ilustração" width={120} height={120} />
+                
         {/* Botão de ação (exemplo) */}
         <Link
           href="/sobre"
