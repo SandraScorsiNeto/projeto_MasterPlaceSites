@@ -33,6 +33,7 @@ export default function Home() {
           Seu portal para criar e gerenciar sites de forma simples e eficiente.
         </p>
         {/* Imagem ilustrativa */}
+        {/*
         <Image
           src="/vercel.svg"
           alt="Ilustração"
@@ -40,6 +41,8 @@ export default function Home() {
           height={120}
           className="mx-auto mb-8 dark:invert"
         />
+        */}
+        
         {/* Botão de ação (exemplo) */}
         <Link
           href="/sobre"
